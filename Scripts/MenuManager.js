@@ -358,9 +358,11 @@
 	 * ------------------------------------------------------------------------------------------- */
 	function startGameFromMenu() {
 		stopMenuMusic();
+		$(document).off('pointerdown.audiounlock keydown.audiounlock');
 		$menuRoot.css('display', 'none');
 		$(document).off('keydown.menu');
 		if (typeof init === 'function') { init(); } // the original, untouched game init()
+		if (window.WWTBAMTouchControls) { window.WWTBAMTouchControls.show(); }
 	}
 
 	function quitGame() {
@@ -376,7 +378,25 @@
 		$menuRoot.css('display', 'block');
 		$(document).off('keydown.menu').on('keydown.menu', onMenuKeyDown);
 		renderMainMenu();
-		startMenuMusic();
+		armAudioUnlock();
+		if (window.WWTBAMTouchControls) { window.WWTBAMTouchControls.hide(); }
+	}
+
+	/* ---------------------------------------------------------------------------------------------
+	 * 8. AUDIO UNLOCK
+	 * Browsers block audio.play() before any user gesture on the page (mouse/keyboard/touch).
+	 * We simply wait for the first such gesture, then start the menu music.
+	 * ------------------------------------------------------------------------------------------- */
+	var audioUnlocked = false;
+	function armAudioUnlock() {
+		if (audioUnlocked) { startMenuMusic(); return; }
+		function unlock() {
+			audioUnlocked = true;
+			startMenuMusic();
+			$(document).off('pointerdown.audiounlock keydown.audiounlock');
+		}
+		$(document).off('pointerdown.audiounlock keydown.audiounlock')
+			.on('pointerdown.audiounlock keydown.audiounlock', unlock);
 	}
 
 	$(document).ready(function () {
