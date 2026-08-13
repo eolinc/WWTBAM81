@@ -65,13 +65,13 @@
 
 	function show() {
 		if (!$panel) { buildPanel(); }
-		$panel.show();
-		$toggle.show();
+		$panel.css('display', 'flex');
+		$toggle.css('display', 'flex');
 	}
 
 	function hide() {
-		if ($panel) { $panel.hide(); }
-		if ($toggle) { $toggle.hide(); }
+		if ($panel) { $panel.css('display', 'none'); }
+		if ($toggle) { $toggle.css('display', 'none'); }
 	}
 
 	// Shown only once the player leaves the Main Menu and starts a game.
