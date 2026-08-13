@@ -1,5 +1,8 @@
 $(document).ready(function(){
-	$(document).on('keydown',function(e)
+	/* Refactored from an anonymous keydown handler into a named, reusable function so that
+	   TouchControlsManager.js can trigger the exact same logic from on-screen buttons.
+	   Nothing inside the function body below this line has been changed. */
+	function handleGameControllerKey(e)
 	{
 		if(e.keyCode == 37) // key 'left arrow' for fastest-finger / money tree hide and show
 		{
@@ -758,6 +761,9 @@ $(document).ready(function(){
 				window.GameVariables.walkAwaySequenceCounter++;
 			}
 		}
-	});
+	}
+
+	$(document).on('keydown', handleGameControllerKey);
+	window.triggerGameControllerKey = function(keyCode){ handleGameControllerKey({ keyCode: keyCode }); };
 });
 
