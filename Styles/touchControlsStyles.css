@@ -1,0 +1,70 @@
+/* TouchControlsManager visuals — a compact, semi-transparent operator bar.
+   Kept visually neutral (dark bar, same orange/white accent already used across the game)
+   since it's a utility overlay for operating the controller, not part of the on-air show UI. */
+
+.touchControlsPanelDiv {
+	position: absolute;
+	left: 0; right: 0;
+	bottom: 0;
+	width: 1920px;
+	height: 84px;
+	background: rgba(0, 10, 25, 0.72);
+	border-top: 2px solid rgba(245, 139, 26, 0.6);
+	z-index: 9998;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	transition: transform 0.2s ease;
+}
+
+.touchControlsPanelHidden {
+	transform: translateY(100%);
+}
+
+.touchControlBtn {
+	width: 76px;
+	height: 60px;
+	border-radius: 6px;
+	background: rgba(255, 255, 255, 0.08);
+	border: 1px solid rgba(255, 255, 255, 0.35);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	touch-action: manipulation;
+	-webkit-user-select: none;
+	user-select: none;
+}
+
+.touchControlBtn span {
+	font-family: 'Copperplate31bc-Celador01';
+	color: #FFFFFF;
+	font-size: 22pt;
+}
+
+.touchControlBtnActive {
+	background: rgba(245, 139, 26, 0.55);
+	border-color: #F58B1A;
+}
+
+.touchControlsToggleDiv {
+	position: absolute;
+	right: 24px;
+	bottom: 96px;
+	width: 56px;
+	height: 56px;
+	border-radius: 50%;
+	background: rgba(0, 10, 25, 0.72);
+	border: 1px solid rgba(245, 139, 26, 0.6);
+	color: #FFFFFF;
+	font-size: 24pt;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	z-index: 9998;
+	touch-action: manipulation;
+	-webkit-user-select: none;
+	user-select: none;
+}
