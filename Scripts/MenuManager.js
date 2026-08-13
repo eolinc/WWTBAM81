@@ -363,6 +363,17 @@
 		$(document).off('keydown.menu');
 		if (typeof init === 'function') { init(); } // the original, untouched game init()
 		if (window.WWTBAMTouchControls) { window.WWTBAMTouchControls.show(); }
+
+		/* init() leaves the game on the intro "MILLIONAIRE" logo screen, waiting for the
+		   operator to press 'C' to reveal the actual question/answer screen (this matches
+		   the original controller's behaviour). Since our menu already acts as the
+		   pre-show screen, we trigger that first 'C' press automatically here so the
+		   player lands straight on a playable screen instead of a logo that never moves. */
+		setTimeout(function () {
+			if (typeof window.triggerGameControllerKey === 'function') {
+				window.triggerGameControllerKey(67);
+			}
+		}, 1200);
 	}
 
 	function quitGame() {
