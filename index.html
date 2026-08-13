@@ -1,454 +1,367 @@
-<html>
-	<head>
-		<title>Who Wants To Be A Millionaire</title>
-		
-		<link rel="shortcut icon" href="Images/favicon.ico" type="image/x-icon">
-		<link rel="icon" href="Images/favicon.ico" type="image/x-icon">
-		
-		<link rel="stylesheet" type="text/css" href="Styles/reset.css">
-		<link rel="stylesheet" type="text/css" href="Styles/bodyStyles.css">
-		<link rel="stylesheet" type="text/css" href="Styles/divStyles.css">
-		<link rel="stylesheet" type="text/css" href="Styles/pStyles.css">
-		<link rel="stylesheet" type="text/css" href="Styles/imgStyles.css">
-		<link rel="stylesheet" type="text/css" href="Styles/tableStyles.css">
-		<link rel="stylesheet" type="text/css" href="Styles/menuStyles.css">
-		<link rel="stylesheet" type="text/css" href="Styles/touchControlsStyles.css">
-		
-		<script type="text/javascript" src="Scripts/jquery-2.1.1.min.js"></script>
-		<script type="text/javascript" src="Scripts/jquery.3d.js"></script>
-		<script type="text/javascript" src="Scripts/accounting.js"></script>
-		<script type="text/javascript" src="Scripts/Variables.js"></script>
-		<script type="text/javascript" src="Scripts/CameraControl.js"></script>
-		<script type="text/javascript" src="Scripts/AudioControl.js"></script>
-		<script type="text/javascript" src="Scripts/FastestFingerControl.js"></script>
-		<script type="text/javascript" src="Scripts/GeneralControl.js"></script>
-		<script type="text/javascript" src="Scripts/QuestionAndAnswerControl.js"></script>
-		<script type="text/javascript" src="Scripts/WinningsControl.js"></script>
-		<script type="text/javascript" src="Scripts/MoneyTreeControl.js"></script>
-		<script type="text/javascript" src="Scripts/LifelineControl.js"></script>
-		<script type="text/javascript" src="Scripts/ContestantsControl.js"></script>
-		<script type="text/javascript" src="Scripts/KeyboardController.js"></script>		
-		<script type="text/javascript" src="Scripts/Init.js"></script>
-		<script type="text/javascript" src="Scripts/TouchControlsManager.js"></script>
-		<script type="text/javascript" src="Scripts/MenuManager.js"></script>
-	</head>
-	<body>
-		<div class="stageContainerDiv">
-			<video id="video" width="1920" height="1080" autoplay></video>
-			<!-- Stage Background Div -->
-			<div class="stageBackgroundDiv">
-				<img src="Images/Millionaire_Background.png" id="stageBackgroundImg" style="opacity:0;-moz-opacity:0;-webkit-opacity:0;"/>
-			</div>
-			
-			<!-- Question Strap Div -->
-			<div class="questionStrapDiv">
-				<table class="questionTable">
-					<tr>
-						<td class="questionTd">
-							A sample question will go here...
-						</td>
-					</tr>
-				</table>
-			</div>
-			
-			<div class="answerGroupADiv" style="bottom:0px;" >
-				<!-- Answer Straps A and B Div -->
-				<div class="answerStrapDiv" style="bottom:167px;" >
-					<div class="leftAnswerDiv" id="answerA" >
-						<img src="Images/Final_Answer_Left_Fill.png" class="finalImg" />
-						<img src="Images/Correct_Answer_Left_Fill.png" class="correctImg" />
-						<img src="Images/Incorrect_Answer_Left_Fill.png" class="incorrectImg" />
-						<img src="Images/white_diagonal.png" class="diagonalImg"/>
-						<p class="letterP">A:</p>
-						<p class="answerP">Answer for A Goes Here...</p>
-						<div class="ataPercentStrapDiv">
-							<p class="ataPercentStrapP" id="ataPercentStrapA">100%</p>
-						</div>
-					</div>
-					<div class="rightAnswerDiv" id="answerB">
-						<img src="Images/Final_Answer_Right_Fill.png" class="finalImg" />
-						<img src="Images/Correct_Answer_Right_Fill.png" class="correctImg" />
-						<img src="Images/Incorrect_Answer_Right_Fill.png" class="incorrectImg" />
-						<img src="Images/white_diagonal.png" class="diagonalImg"/>
-						<p class="letterP">B:</p>
-						<p class="answerP">Answer for B Goes Here...</p>
-						<div class="ataPercentStrapDiv">
-							<p class="ataPercentStrapP" id="ataPercentStrapB">100%</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			<div class="answerGroupBDiv" style="bottom:0px;" >
-				<!-- Answer Straps C and D Div -->
-				<div class="answerStrapDiv" style="bottom:77px;" >
-					<div class="leftAnswerDiv" id="answerC" >
-						<img src="Images/Final_Answer_Left_Fill.png" class="finalImg" />
-						<img src="Images/Correct_Answer_Left_Fill.png" class="correctImg" />
-						<img src="Images/Incorrect_Answer_Left_Fill.png" class="incorrectImg" />
-						<img src="Images/white_diagonal.png" class="diagonalImg"/>
-						<p class="letterP">C:</p>
-						<p class="answerP">Answer for C Goes Here...</p>
-						<div class="ataPercentStrapDiv">
-							<p class="ataPercentStrapP" id="ataPercentStrapC">100%</p>
-						</div>
-					</div>
-					<div class="rightAnswerDiv" id="answerD">
-						<img src="Images/Final_Answer_Right_Fill.png" class="finalImg" />
-						<img src="Images/Correct_Answer_Right_Fill.png" class="correctImg" />
-						<img src="Images/Incorrect_Answer_Right_Fill.png" class="incorrectImg" />
-						<img src="Images/white_diagonal.png" class="diagonalImg"/>
-						<p class="letterP">D:</p>
-						<p class="answerP">Answer for D Goes Here...</p>
-						<div class="ataPercentStrapDiv">
-							<p class="ataPercentStrapP" id="ataPercentStrapD">100%</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			<!-- Answer Straps Life Line Centered Div -->
-			<div class="answerStrapLifeLineCenterDiv">
-				<div class="answerStrapLifeLineCenterContainerDiv">
-					<img src="Images/lifeline_tree/lifeline_fill.png" class="lifelineFillCenterImg"/>
-					<div class="answerStrapLifeLineCenterGradientDiv">
-						<img src="Images/lifeline_tree/lifeline_gradient.png" class="lifelineGradientCenterImg"/>
-					</div>
-					<img src="Images/lifeline_tree/lifeline_outline.png" class="lifelineOutlineCenterImg"/>
-					<img src="Images/lifeline_tree/lifeline_stq.png" class="lifelineCenterImg" id="stqLifeLineCenterImg"/>
-					<img src="Images/lifeline_tree/lifeline_dd.png" class="lifelineCenterImg" id="ddLifeLineCenterImg"/>
-				</div>
-			</div>
-			
-			<!-- Win Strap Div -->
-			<div class="winStrapDiv">
-				<img src="Images/winnings_glow.png" style="top:0px;bottom:0px;left:465px;"/>
-				<img src="Images/winnings_glow.png" style="top:0px;bottom:0px;right:465px;"/>
-				<p class="winningsP">$250,000</p>
-			</div>
-			
-			<!-- Fastest Finger Contestants Div -->
-			<div class="fastestFingerContestantsDiv">
-				<div class="fastestContestantDiv" id="fastestContestant1" style="top:-1px;">
-					<img src="Images/fastest_time_strap_fast_fill.png" class="fastestTimeCorrectFillImg"/>
-					<img src="Images/fastest_finger_strap_glow.png" class="fastestFingerLeftGlowImg" />
-					<img src="Images/fastest_finger_strap_glow.png" class="fastestFingerRightGlowImg" />
-					<p class="fastestContestantNameP">Contestant Name Here...</p>
-					<p class="fastestContestantTimeP">20.00s</p>
-				</div>
-				<div class="fastestContestantDiv" id="fastestContestant2" style="top:89px;">
-					<img src="Images/fastest_time_strap_fast_fill.png" class="fastestTimeCorrectFillImg"/>
-					<img src="Images/fastest_finger_strap_glow.png" class="fastestFingerLeftGlowImg" />
-					<img src="Images/fastest_finger_strap_glow.png" class="fastestFingerRightGlowImg" />
-					<p class="fastestContestantNameP">Contestant Name Here...</p>
-					<p class="fastestContestantTimeP">20.00s</p>
-				</div>
-				<div class="fastestContestantDiv" id="fastestContestant3" style="top:179px;">
-					<img src="Images/fastest_time_strap_fast_fill.png" class="fastestTimeCorrectFillImg"/>
-					<img src="Images/fastest_finger_strap_glow.png" class="fastestFingerLeftGlowImg" />
-					<img src="Images/fastest_finger_strap_glow.png" class="fastestFingerRightGlowImg" />
-					<p class="fastestContestantNameP">Contestant Name Here...</p>
-					<p class="fastestContestantTimeP">20.00s</p>
-				</div>
-				<div class="fastestContestantDiv" id="fastestContestant4" style="top:269px;">
-					<img src="Images/fastest_time_strap_fast_fill.png" class="fastestTimeCorrectFillImg"/>
-					<img src="Images/fastest_finger_strap_glow.png" class="fastestFingerLeftGlowImg" />
-					<img src="Images/fastest_finger_strap_glow.png" class="fastestFingerRightGlowImg" />
-					<p class="fastestContestantNameP">Contestant Name Here...</p>
-					<p class="fastestContestantTimeP">20.00s</p>
-				</div>
-				<div class="fastestContestantDiv" id="fastestContestant5" style="top:359px;">
-					<img src="Images/fastest_time_strap_fast_fill.png" class="fastestTimeCorrectFillImg"/>
-					<img src="Images/fastest_finger_strap_glow.png" class="fastestFingerLeftGlowImg" />
-					<img src="Images/fastest_finger_strap_glow.png" class="fastestFingerRightGlowImg" />
-					<p class="fastestContestantNameP">Contestant Name Here...</p>
-					<p class="fastestContestantTimeP">20.00s</p>
-				</div>
-				<div class="fastestContestantDiv" id="fastestContestant6" style="top:449px;">
-					<img src="Images/fastest_time_strap_fast_fill.png" class="fastestTimeCorrectFillImg"/>
-					<img src="Images/fastest_finger_strap_glow.png" class="fastestFingerLeftGlowImg" />
-					<img src="Images/fastest_finger_strap_glow.png" class="fastestFingerRightGlowImg" />
-					<p class="fastestContestantNameP">Contestant Name Here...</p>
-					<p class="fastestContestantTimeP">20.00s</p>
-				</div>
-				<div class="fastestContestantDiv" id="fastestContestant7" style="top:539px;">
-					<img src="Images/fastest_time_strap_fast_fill.png" class="fastestTimeCorrectFillImg"/>
-					<img src="Images/fastest_finger_strap_glow.png" class="fastestFingerLeftGlowImg" />
-					<img src="Images/fastest_finger_strap_glow.png" class="fastestFingerRightGlowImg" />
-					<p class="fastestContestantNameP">Contestant Name Here...</p>
-					<p class="fastestContestantTimeP">20.00s</p>
-				</div>
-				<div class="fastestContestantDiv" id="fastestContestant8" style="top:629px;">
-					<img src="Images/fastest_time_strap_fast_fill.png" class="fastestTimeCorrectFillImg"/>
-					<img src="Images/fastest_finger_strap_glow.png" class="fastestFingerLeftGlowImg" />
-					<img src="Images/fastest_finger_strap_glow.png" class="fastestFingerRightGlowImg" />
-					<p class="fastestContestantNameP">Contestant Name Here...</p>
-					<p class="fastestContestantTimeP">20.00s</p>
-				</div>
-				<div class="fastestContestantDiv" id="fastestContestant9" style="top:719px;">
-					<img src="Images/fastest_time_strap_fast_fill.png" class="fastestTimeCorrectFillImg"/>
-					<img src="Images/fastest_finger_strap_glow.png" class="fastestFingerLeftGlowImg" />
-					<img src="Images/fastest_finger_strap_glow.png" class="fastestFingerRightGlowImg" />
-					<p class="fastestContestantNameP">Contestant Name Here...</p>
-					<p class="fastestContestantTimeP">20.00s</p>
-				</div>
-				<div class="fastestContestantDiv" id="fastestContestant10" style="top:809px;">
-					<img src="Images/fastest_time_strap_fast_fill.png" class="fastestTimeCorrectFillImg"/>
-					<img src="Images/fastest_finger_strap_glow.png" class="fastestFingerLeftGlowImg" />
-					<img src="Images/fastest_finger_strap_glow.png" class="fastestFingerRightGlowImg" />
-					<p class="fastestContestantNameP">Contestant Name Here...</p>
-					<p class="fastestContestantTimeP">20.00s</p>
-				</div>
-			</div>
-			
-			<!-- Fastest Finger Winner Div -->
-			<div class="fastestContestantDiv" id="fastestContestant" style="bottom:92px;opacity:0;-moz-opacity:0;-webkit-opacity:0;left:0px;right:0px;">
-				<img src="Images/fastest_time_strap_fast_fill.png" class="fastestTimeCorrectFillImg" style="opacity:1;-mz-opacity:1;-webkit-opacity:1;"/>
-				<img src="Images/fastest_finger_strap_glow.png" class="fastestFingerLeftGlowImg" />
-				<img src="Images/fastest_finger_strap_glow.png" class="fastestFingerRightGlowImg" />
-				<p class="fastestContestantNameP" style="color:black;">Contestant Name Here...</p>
-				<p class="fastestContestantTimeP" style="color:black;">20.00s</p>
-			</div>
-			
-			<!-- Contestant Name Strap Div -->
-			<div class="contestantNameAndLocationDiv">
-				<p class="contestantNameP">
-					UNNAMED PLAYER
-				</p>
-				<p class="contestantLocationP">
-					UNNAMED LOCATION
-				</p>
-			</div>
-						
-			<!-- Fastest Finger Tree Order Div -->
-			<div class="fastestFingerRevealOrderDiv">
-				<img src="Images/tree_seperator.png" />
-				<div class="fastestFingerTreeQuestionDiv">
-					<p class="fastestFingerTreeQuestionP">The question for fastest finger will go here</p>
-				</div>
-				<div class="fastestFingerTreeAnswerDiv" style="bottom:415px;" id="fastestAnswerOrder1">
-					<img src="Images/white_diagonal.png" class="fastestTreeAnswerDiagonalImg" />
-					<p class="fastestTreeLetterP">?:</p>
-					<p class="fastestTreeAnswerP">Answer goes here...</p>
-				</div>
-				<div class="fastestFingerTreeAnswerDiv" style="bottom:317px;" id="fastestAnswerOrder2">
-					<img src="Images/white_diagonal.png" class="fastestTreeAnswerDiagonalImg" />
-					<p class="fastestTreeLetterP">?:</p>
-					<p class="fastestTreeAnswerP">Answer goes here...</p>
-				</div>
-				<div class="fastestFingerTreeAnswerDiv" style="bottom:219px;" id="fastestAnswerOrder3">
-					<img src="Images/white_diagonal.png" class="fastestTreeAnswerDiagonalImg" />
-					<p class="fastestTreeLetterP">?:</p>
-					<p class="fastestTreeAnswerP">Answer goes here...</p>
-				</div>
-				<div class="fastestFingerTreeAnswerDiv" style="bottom:121px;" id="fastestAnswerOrder4">
-					<img src="Images/white_diagonal.png" class="fastestTreeAnswerDiagonalImg" />
-					<p class="fastestTreeLetterP">?:</p>
-					<p class="fastestTreeAnswerP">Answer goes here...</p>
-				</div>
-			</div>
-			
-			
-			
-			<!-- Money Tree Div -->
-			<div class="moneyTreeDiv">
-				<div class="lifelineTreeGroupDiv">
-					<div class="lifelineTreeHolderDiv ffLifeLine" style="left:-20px;opacity:1;">
-						<div class="lifelineTreeDiv" style="transform:perspective(0px) scale(1.25, 1.25);">
-							<img src="Images/lifeline_tree/lifeline_fill.png" class="lifelineFillTreeImg"/>
-							<img src="Images/lifeline_tree/lifeline_fill_red.png" class="lifelineFillRedTreeImg"/>
-							<div class="lifelineGradientTreeDiv">
-								<img src="Images/lifeline_tree/lifeline_gradient.png" class="lifelineGradientTreeImg"/>
-							</div>
-							<img src="Images/lifeline_tree/lifeline_outline.png" class="lifelineOutlineTreeImg"/>
-							<img src="Images/lifeline_tree/lifeline_5050.png" class="lifelineTreeImg"/>
-							<img src="Images/lifeline_used.png" class="lifelineUsedImg"/>
-						</div>
-					</div>
-					<div class="lifelineTreeHolderDiv ddLifeLine" style="left:-20px;opacity:1;">
-						<div class="lifelineTreeDiv" style="transform:perspective(0px) scale(1.25, 1.25);">
-							<img src="Images/lifeline_tree/lifeline_fill.png" class="lifelineFillTreeImg"/>
-							<img src="Images/lifeline_tree/lifeline_fill_red.png" class="lifelineFillRedTreeImg"/>
-							<div class="lifelineGradientTreeDiv">
-								<img src="Images/lifeline_tree/lifeline_gradient.png" class="lifelineGradientTreeImg"/>
-							</div>
-							<img src="Images/lifeline_tree/lifeline_outline.png" class="lifelineOutlineTreeImg"/>
-							<img src="Images/lifeline_tree/lifeline_dd.png" class="lifelineTreeImg"/>
-							<img src="Images/lifeline_used.png" class="lifelineUsedImg"/>
-						</div>
-					</div>
-					<div class="lifelineTreeHolderDiv pafLifeLine" style="left:155px;opacity:1;">
-						<div class="lifelineTreeDiv" style="transform:perspective(0px) scale(1.25, 1.25);">
-							<img src="Images/lifeline_tree/lifeline_fill.png" class="lifelineFillTreeImg"/>
-							<img src="Images/lifeline_tree/lifeline_fill_red.png" class="lifelineFillRedTreeImg"/>
-							<div class="lifelineGradientTreeDiv">
-								<img src="Images/lifeline_tree/lifeline_gradient.png" class="lifelineGradientTreeImg"/>
-							</div>
-							<img src="Images/lifeline_tree/lifeline_outline.png" class="lifelineOutlineTreeImg"/>
-							<img src="Images/lifeline_tree/lifeline_paf.png" class="lifelineTreeImg"/>
-							<img src="Images/lifeline_used.png" class="lifelineUsedImg"/>
-						</div>
-					</div>
-					<div class="lifelineTreeHolderDiv ataLifeLine" style="left:330px;opacity:1;">
-						<div class="lifelineTreeDiv" style="transform:perspective(0px) scale(1.25, 1.25);">
-							<img src="Images/lifeline_tree/lifeline_fill.png" class="lifelineFillTreeImg"/>
-							<img src="Images/lifeline_tree/lifeline_fill_red.png" class="lifelineFillRedTreeImg"/>
-							<div class="lifelineGradientTreeDiv">
-								<img src="Images/lifeline_tree/lifeline_gradient.png" class="lifelineGradientTreeImg"/>
-							</div>
-							<img src="Images/lifeline_tree/lifeline_outline.png" class="lifelineOutlineTreeImg"/>
-							<img src="Images/lifeline_tree/lifeline_ata.png" class="lifelineTreeImg"/>
-							<img src="Images/lifeline_used.png" class="lifelineUsedImg"/>
-						</div>
-					</div>
-					<div class="lifelineTreeHolderDiv stqLifeLine" style="left:780px;opacity:0;">
-						<div class="lifelineTreeDiv" style="transform:perspective(0px) scale(1.25, 1.25);">
-							<img src="Images/lifeline_tree/lifeline_fill.png" class="lifelineFillTreeImg"/>
-							<img src="Images/lifeline_tree/lifeline_fill_red.png" class="lifelineFillRedTreeImg"/>
-							<div class="lifelineGradientTreeDiv">
-								<img src="Images/lifeline_tree/lifeline_gradient.png" class="lifelineGradientTreeImg"/>
-							</div>
-							<img src="Images/lifeline_tree/lifeline_outline.png" class="lifelineOutlineTreeImg"/>
-							<img src="Images/lifeline_tree/lifeline_stq.png" class="lifelineTreeImg"/>
-							<img src="Images/lifeline_used.png" class="lifelineUsedImg"/>
-						</div>
-					</div>
-				</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Octoflix</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<!-- Riferimenti WinJS (decommenta i percorsi corretti quando importi in Visual Studio) -->
+<!-- <link href="//Microsoft.WinJS.4.0/css/ui-dark.css" rel="stylesheet" /> -->
+<!-- <script src="//Microsoft.WinJS.4.0/js/base.js"></script> -->
+<!-- <script src="//Microsoft.WinJS.4.0/js/ui.js"></script> -->
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<!-- Firebase (Authentication + Firestore) — versione "compat", compatibile
+     con normali tag <script> senza bisogno di moduli ES. Configura la tua
+     firebaseConfig in js/app.js (istruzioni nei commenti in cima al file). -->
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<!-- hls.js: permette al tag <video> di riprodurre stream HLS (.m3u8),
+     che i browser Chrome/Firefox/Edge non supportano nativamente. -->
+<script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.15/dist/hls.min.js"></script>
+<!-- YouTube IFrame Player API ufficiale, per riprodurre video YouTube
+     (incluse le serie interattive con End Screen nativa) dentro OctoFlix. -->
+<script src="https://www.youtube.com/iframe_api"></script>
+</head>
+<body>
 
-				<table class="currentLevelTable">
-					
-				</table>
-				<table class="moneyTreeTable">
-					
-				</table>
-				<img src="Images/tree_seperator.png" />
-			</div>
-			
-			<!-- Life Lines Left Strap -->
-			<div class="lifeLinesLeftStrapDiv">
-				<div class="lifelineStrapHolderDiv ffStrapLifeLine" style="top:0px;bottom:0px;left:545px;">
-					<div class="lifeLineStrapDiv">
-						<img src="Images/lifeline_tree/lifeline_fill.png" class="lifelineFillStrapImg"/>
-						<img src="Images/lifeline_tree/lifeline_fill_red.png" class="lifelineFillRedStrapImg"/>
-						<div class="lifelineGradientStrapDiv">
-							<img src="Images/lifeline_tree/lifeline_gradient.png" class="lifelineGradientStrapImg"/>
-						</div>
-						<img src="Images/lifeline_tree/lifeline_outline.png" class="lifelineOutlineStrapImg"/>
-						<img src="Images/lifeline_tree/lifeline_5050.png" class="lifelineStrapImg"/>
-						<img src="Images/lifeline_used.png" class="lifelineUsedStrapImg"/>
-					</div>
-				</div>
-				<div class="lifelineStrapHolderDiv ddStrapLifeLine" style="top:0px;bottom:0px;left:545px;">
-					<div class="lifeLineStrapDiv">
-						<img src="Images/lifeline_tree/lifeline_fill.png" class="lifelineFillStrapImg"/>
-						<img src="Images/lifeline_tree/lifeline_fill_red.png" class="lifelineFillRedStrapImg"/>
-						<div class="lifelineGradientStrapDiv">
-							<img src="Images/lifeline_tree/lifeline_gradient.png" class="lifelineGradientStrapImg"/>
-						</div>
-						<img src="Images/lifeline_tree/lifeline_outline.png" class="lifelineOutlineStrapImg"/>
-						<img src="Images/lifeline_tree/lifeline_dd.png" class="lifelineStrapImg"/>
-						<img src="Images/lifeline_used.png" class="lifelineUsedStrapImg"/>
-					</div>
-				</div>
-				<div class="lifelineStrapHolderDiv pafStrapLifeLine" style="top:0px;bottom:0px;left:745px;">
-					<div class="lifeLineStrapDiv">
-						<img src="Images/lifeline_tree/lifeline_fill.png" class="lifelineFillStrapImg"/>
-						<img src="Images/lifeline_tree/lifeline_fill_red.png" class="lifelineFillRedStrapImg"/>
-						<div class="lifelineGradientStrapDiv">
-							<img src="Images/lifeline_tree/lifeline_gradient.png" class="lifelineGradientStrapImg"/>
-						</div>
-						<img src="Images/lifeline_tree/lifeline_outline.png" class="lifelineOutlineStrapImg"/>
-						<img src="Images/lifeline_tree/lifeline_paf.png" class="lifelineStrapImg"/>
-						<img src="Images/lifeline_used.png" class="lifelineUsedStrapImg"/>
-					</div>
-				</div>
-				<div class="lifelineStrapHolderDiv ataStrapLifeLine" style="top:0px;bottom:0px;left:945px;">
-					<div class="lifeLineStrapDiv">
-						<img src="Images/lifeline_tree/lifeline_fill.png" class="lifelineFillStrapImg"/>
-						<img src="Images/lifeline_tree/lifeline_fill_red.png" class="lifelineFillRedStrapImg"/>
-						<div class="lifelineGradientStrapDiv">
-							<img src="Images/lifeline_tree/lifeline_gradient.png" class="lifelineGradientStrapImg"/>
-						</div>
-						<img src="Images/lifeline_tree/lifeline_outline.png" class="lifelineOutlineStrapImg"/>
-						<img src="Images/lifeline_tree/lifeline_ata.png" class="lifelineStrapImg"/>
-						<img src="Images/lifeline_used.png" class="lifelineUsedStrapImg"/>
-					</div>
-				</div>
-				<div class="lifelineStrapHolderDiv stqStrapLifeLine" style="top:0px;bottom:0px;left:1870px;">
-					<div class="lifeLineStrapDiv">
-						<img src="Images/lifeline_tree/lifeline_fill.png" class="lifelineFillStrapImg"/>
-						<img src="Images/lifeline_tree/lifeline_fill_red.png" class="lifelineFillRedStrapImg"/>
-						<div class="lifelineGradientStrapDiv">
-							<img src="Images/lifeline_tree/lifeline_gradient.png" class="lifelineGradientStrapImg"/>
-						</div>
-						<img src="Images/lifeline_tree/lifeline_outline.png" class="lifelineOutlineStrapImg"/>
-						<img src="Images/lifeline_tree/lifeline_stq.png" class="lifelineStrapImg"/>
-						<img src="Images/lifeline_used.png" class="lifelineUsedStrapImg"/>
-					</div>
-				</div>
-			</div>
-			
-			<!-- Ask The Audience Graph Div -->
-			<div class="ataGraphDiv">
-				<div class="ataGraphBarDiv" id="graphBarA" style="left:26px;"></div>
-				<div class="ataGraphBarDiv" id="graphBarB" style="left:104px;"></div>
-				<div class="ataGraphBarDiv" id="graphBarC" style="left:182px;"></div>
-				<div class="ataGraphBarDiv" id="graphBarD" style="left:260px;"></div>
-				<div class="ataGraphPercentDiv" id="graphPercentA" style="left:-22px;"></div>
-				<div class="ataGraphPercentDiv" id="graphPercentB" style="left:56px;"></div>
-				<div class="ataGraphPercentDiv" id="graphPercentC" style="left:134px;"></div>
-				<div class="ataGraphPercentDiv" id="graphPercentD" style="left:212px;"></div>
-			</div>
-			
-			<!-- Phone a Friend Clock Div -->
-			<div class="pafClockDiv">
-				<div style="width:400px;height:400px;left:0px;top:0px;bottom:0px;overflow:hidden;">
-					<img src="Images/clock_ring.png" style="top:0px;bottom:0px;" id="pafRing1Img"/>
-				</div>
-				<div style="width:400px;height:400px;left:0px;top:0px;bottom:0px;overflow:hidden;">
-					<img src="Images/clock_ring.png" style="top:0px;bottom:0px;left:-10px;" id="pafRing2Img"/>
-				</div>
-				<div style="width:400px;height:400px;left:0px;top:0px;bottom:0px;overflow:hidden;">
-					<img src="Images/clock_ring.png" style="top:30px;bottom:0px;" id="pafRing3Img"/>
-				</div>
-				<div style="width:400px;height:400px;left:0px;top:0px;bottom:0px;overflow:hidden;">
-					<img src="Images/clock_ring.png" style="top:0px;bottom:0px;" id="pafRing4Img"/>
-				</div>
-				<div class="pafClockTimeDiv">30</div>
-			</div>
-			
-			<!-- Millionaire Winner Title Div -->
-			<div class="millionaireWinnerTitleDiv">
-				<img src="Images/Large_Win_Strap_Filled.png" style="top:95px;transform:scale(1.08);"/>
-				<img src="Images/winnings_glow.png" style="bottom:89px;left:410px;"/>
-				<img src="Images/winnings_glow.png" style="bottom:89px;right:410px;"/>
-				<div class="millionaireWinnerNameDiv">UNNAMED PLAYER</div>
-				<div class="millionaireWinnerDiv">MILLIONAIRE</div>
-			</div>
-			
-			<!-- Total Prize Money Div -->
-			<div class="totalPrizeMoneyDiv">
-				<img src="Images/Large_Win_Strap_Filled.png" style="top:95px;transform:scale(1.08);"/>
-				<img src="Images/winnings_glow.png" style="bottom:89px;left:410px;"/>
-				<img src="Images/winnings_glow.png" style="bottom:89px;right:410px;"/>
-				<div class="totalPrizeDiv">TOTAL PRIZE</div>
-				<div class="totalPrizeMoneyWonDiv">$0</div>
-			</div>
-			
-			<!-- Current Level Strap Div-->
-			<div class="currentLevelStrapDiv">
-				<div class="currentLevelStrapAmountDiv">
-					$250,000
-				</div>
-			</div>
-			
-			<div class="logoContainerDiv">
-				<div class="logoDiv">
-					<img src="Images/logo_beam_blue.png" style="top:-400px;bottom:-400px;left:-400px;right:-400px;" id="logoBeam1Img"/>
-					<img src="Images/logo_beam_blue.png" style="top:-400px;bottom:-400px;left:-400px;right:-400px;" id="logoBeam2Img"/>
-					<img src="Images/logo.png" />
-				</div>
-			</div>
-		</div>
-	</body>
+  <!-- ===================== SCHERMATA LOGIN / REGISTRAZIONE ===================== -->
+  <div id="view-auth" class="view auth-view view-active">
+    <!-- Barra superiore: logo a sinistra, toggle Accedi/Registrati a destra
+         (come "Member sign in" nello screenshot di riferimento) -->
+    <header class="auth-topbar">
+      <img class="auth-logo" src="images/logo.png" alt="Octoflix" />
+      <div class="auth-tabs">
+        <button id="auth-tab-login" class="auth-tab-btn auth-tab-active" tabindex="0" data-tab="login" data-i18n="auth.tabLogin">Accedi</button>
+        <button id="auth-tab-register" class="auth-tab-btn" tabindex="0" data-tab="register" data-i18n="auth.tabRegister">Registrati</button>
+      </div>
+    </header>
+
+    <div class="auth-hero">
+      <div class="auth-hero-left">
+        <div class="auth-headline-row">
+          <h1 class="auth-headline" data-i18n="auth.headline">Watch movies &amp; TV shows anytime, anywhere.</h1>
+          <!-- Bollino promozionale: immagine da aggiungere in images/promo-badge.png -->
+          <img class="auth-badge" src="images/promo-badge.png" alt="" onerror="this.style.display='none'" />
+        </div>
+        <ul class="auth-checklist">
+          <li><span class="icon-font">&#xE0A2;</span><span data-i18n="auth.check1">Watch on your TV, console, PC, tablet and phone</span></li>
+          <li><span class="icon-font">&#xE0A2;</span><span data-i18n="auth.check2">Content streamed instantly over the internet</span></li>
+          <li><span class="icon-font">&#xE0A2;</span><span data-i18n="auth.check3">No commitments, cancel anytime</span></li>
+        </ul>
+
+        <form id="auth-form-login" class="auth-form auth-form-inline">
+          <input id="login-username" class="auth-input" type="text" autocomplete="username" data-i18n-placeholder="auth.loginUserLabel" placeholder="Email or username" />
+          <input id="login-password" class="auth-input" type="password" autocomplete="current-password" data-i18n-placeholder="auth.passwordLabel" placeholder="Password" />
+        </form>
+        <form id="auth-form-register" class="auth-form auth-form-stack hidden">
+          <input id="register-username" class="auth-input" type="text" autocomplete="username" data-i18n-placeholder="auth.usernameLabel" placeholder="Username" />
+          <input id="register-email" class="auth-input" type="email" autocomplete="email" data-i18n-placeholder="auth.emailLabel" placeholder="Email" />
+          <input id="register-password" class="auth-input" type="password" autocomplete="new-password" data-i18n-placeholder="auth.passwordLabel" placeholder="Password" />
+          <input id="register-password2" class="auth-input" type="password" autocomplete="new-password" data-i18n-placeholder="auth.confirmPasswordLabel" placeholder="Confirm password" />
+        </form>
+
+        <div class="auth-submit-row">
+          <button id="login-submit" type="submit" form="auth-form-login" class="btn btn-primary auth-submit" data-i18n="auth.loginSubmit">Continue</button>
+          <button id="register-submit" type="submit" form="auth-form-register" class="btn btn-primary auth-submit hidden" data-i18n="auth.registerSubmit">Continue</button>
+          <span class="auth-hint-text" data-i18n="auth.soFarSoGood">So far so good :)</span>
+        </div>
+        <div id="login-error" class="auth-error hidden"></div>
+        <div id="register-error" class="auth-error hidden"></div>
+
+        <div class="auth-footer">
+          <p class="auth-footer-title" data-i18n="auth.footerTitle">Account details</p>
+          <p data-i18n="auth.footerP1">We will never sell or rent your email address to third parties.</p>
+          <p>
+            <span data-i18n="auth.footerP2">Your account data is handled according to our</span>
+            <a href="#" class="auth-privacy-link"><span class="icon-font">&#xE1F6;</span><span data-i18n="auth.privacyPolicy">Privacy Policy</span></a>
+          </p>
+        </div>
+      </div>
+
+      <div class="auth-hero-right">
+        <div class="auth-collage-main"></div>
+        <div class="auth-collage-small auth-collage-a"></div>
+        <div class="auth-collage-small auth-collage-b"></div>
+      </div>
+    </div>
+
+    <div class="auth-bottombar">
+      <span class="icon-font">&#xE1D4;</span>
+      <span data-i18n="auth.contact">Questions? Visit our Help Center.</span>
+    </div>
+  </div>
+
+  <!-- ===================== MODALE CREAZIONE/MODIFICA PROFILO ===================== -->
+  <div id="profile-modal" class="modal-overlay hidden">
+    <div class="modal-box">
+      <h2 id="modal-title-text" class="modal-title" data-i18n="modal.titleCreate">Nuovo profilo</h2>
+      <div class="modal-avatar-picker">
+        <div id="modal-avatar-preview" class="modal-avatar-preview">?</div>
+        <span class="modal-avatar-hint" data-i18n="modal.chooseAvatar">Scegli un'immagine</span>
+      </div>
+      <div id="modal-avatar-gallery" class="modal-avatar-gallery">
+        <!-- generata dinamicamente da app.js in base a AVAILABLE_AVATARS -->
+      </div>
+      <label class="auth-label" data-i18n="modal.nameLabel">Nome profilo</label>
+      <input id="modal-profile-name" class="auth-input" type="text" maxlength="20" />
+      <div id="modal-error" class="auth-error hidden"></div>
+      <div class="modal-actions">
+        <button id="modal-cancel" class="btn btn-secondary" tabindex="0" data-i18n="modal.cancel">Annulla</button>
+        <button id="modal-save" class="btn btn-primary" tabindex="0" data-i18n="modal.save">Salva</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== SCHERMATA HOME ===================== -->
+  <div id="view-home" class="view">
+
+    <!-- SIDEBAR -->
+    <nav id="sidebar" class="sidebar">
+      <div class="red-badge" id="red-badge">
+        <button id="logo-home-btn" class="logo-home-btn" tabindex="0" aria-label="Vai alla Home" data-i18n-aria="nav.goHome">
+          <img class="logo-img" src="images/logo.png" alt="Octoflix" />
+        </button>
+        <button id="sidebar-toggle-btn" class="logo-caret-btn" tabindex="0" aria-label="Comprimi/espandi il riquadro rosso" data-i18n-aria="nav.toggleSidebar">
+          <span class="caret-circle icon-font">&#xE1FD;</span>
+        </button>
+      </div>
+
+      <ul class="nav-list" id="nav-list">
+        <li class="nav-item nav-active" tabindex="0" data-nav="0" data-section="home">
+          <span class="nav-label" data-i18n="nav.home">Home</span>
+          <span class="nav-icon icon-font">&#xE10F;</span>
+        </li>
+        <li class="nav-item" tabindex="0" data-nav="1" data-section="top">
+          <span class="nav-label" data-i18n="nav.featured">In evidenza</span>
+        </li>
+        <li class="nav-item" tabindex="0" data-nav="2" data-section="new">
+          <span class="nav-label" data-i18n="nav.new">Novità</span>
+        </li>
+        <li class="nav-item" tabindex="0" data-nav="3" data-section="genres">
+          <span class="nav-label" data-i18n="nav.categories">Categorie</span>
+          <span class="nav-icon icon-font nav-genres-caret">&#xE015;</span>
+        </li>
+      </ul>
+      <ul id="genres-sublist" class="genres-sublist">
+        <!-- generata dinamicamente da app.js in base alle categorie del catalogo -->
+      </ul>
+    </nav>
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <button id="search-toggle" class="icon-btn icon-font" tabindex="0" aria-label="Cerca" data-i18n-aria="search.open">&#xE11A;</button>
+      <div id="search-box" class="search-box">
+        <input id="search-input" type="text" placeholder="Titoli, generi..." autocomplete="off" data-i18n-placeholder="search.placeholder" />
+        <button id="search-close" class="icon-btn icon-font" tabindex="0" aria-label="Chiudi ricerca" data-i18n-aria="search.close">&#xE106;</button>
+      </div>
+
+      <!-- Profilo attivo + menu a tendina (come nella tua seconda immagine) -->
+      <div class="profile-menu-wrap">
+        <button id="profile-avatar-btn" class="profile-avatar-btn" tabindex="0" aria-label="Profilo" data-i18n-aria="profile.menu">
+          <span id="topbar-avatar" class="avatar-circle">?</span>
+          <span id="topbar-profile-name" class="profile-name-text"></span>
+          <span class="icon-font profile-caret">&#xE015;</span>
+        </button>
+        <div id="profile-dropdown" class="profile-dropdown hidden">
+          <div id="profile-dropdown-list" class="profile-dropdown-list"></div>
+          <button id="dropdown-add-profile" class="profile-dropdown-item profile-dropdown-add" tabindex="0" data-i18n="profile.addProfile">+ Aggiungi profilo</button>
+          <button id="dropdown-logout" class="profile-dropdown-item profile-dropdown-logout" tabindex="0" data-i18n="profile.logout">Esci</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENUTO SCORREVOLE -->
+    <main id="content" class="content">
+      <div id="rows-container" class="rows-container">
+        <!-- righe generate dinamicamente da app.js -->
+      </div>
+      <div id="search-results" class="rows-container search-results hidden">
+        <div class="row">
+          <div class="row-header">
+            <span class="row-title" data-i18n="search.resultsTitle">Risultati ricerca</span>
+          </div>
+          <div class="row-track" id="search-track"></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- ===================== SCHERMATA "VEDI TUTTI" (griglia per categoria) ===================== -->
+  <div id="view-grid" class="view grid-view">
+    <button id="grid-back" class="grid-back-arrow icon-font" tabindex="0" aria-label="Indietro" data-i18n-aria="common.back">&#xE0BA;</button>
+    <div class="grid-topbar">
+      <img class="grid-logo-img" src="images/logo.png" alt="Octoflix" />
+      <span class="caret-circle icon-font grid-caret">&#xE1FD;</span>
+    </div>
+    <h2 id="grid-title" class="grid-title">Categoria</h2>
+    <div class="grid-track-wrap">
+      <div id="grid-track" class="grid-track"></div>
+    </div>
+
+    <!-- Zoom semantico: pinch-out (o Ctrl+rotellina, o questo pulsante)
+         mostra la panoramica di tutti i generi, come nel tuo mockup. -->
+    <button id="grid-zoom-out-btn" class="zoom-out-btn icon-font" tabindex="0" aria-label="Riduci: vedi tutte le categorie">&#xE0C9;</button>
+
+    <div id="zoom-overview" class="zoom-overview hidden">
+      <h2 class="zoom-overview-title" data-i18n="zoom.allCategories">Categorie</h2>
+      <div id="zoom-overview-grid" class="zoom-overview-grid"></div>
+    </div>
+  </div>
+
+  <!-- ===================== SCHERMATA DETTAGLI SERIE TV ===================== -->
+  <div id="view-series-detail" class="view">
+    <div class="detail-header">
+      <button id="series-back" class="back-btn icon-font" tabindex="0" aria-label="Indietro" data-i18n-aria="common.back">&#xE0BA;</button>
+      <h1 class="detail-title" id="series-title">Titolo della serie</h1>
+      <span class="detail-meta" id="series-meta"></span>
+    </div>
+    <div class="detail-wrap series-detail-wrap">
+      <div class="detail-poster" id="series-poster-btn" tabindex="0">
+        <img id="series-poster-img" src="" alt="" />
+        <div class="detail-poster-play icon-font">&#xE102;</div>
+      </div>
+      <div class="detail-info">
+        <p class="detail-desc" id="series-desc"></p>
+
+        <div class="detail-rating-row">
+          <div class="detail-stars" id="series-stars"></div>
+          <button id="series-mylist-btn" class="btn btn-secondary" tabindex="0">
+            <span id="series-mylist-icon" class="btn-icon icon-font">&#xE109;</span>
+            <span id="series-mylist-label" data-i18n="detail.addToList">Aggiungi alla lista</span>
+          </button>
+        </div>
+
+        <div class="detail-section hidden" id="series-cast-section">
+          <div class="detail-section-title" data-i18n="detail.starring">Cast</div>
+          <div class="detail-pills" id="series-cast-pills"></div>
+        </div>
+        <div class="detail-section" id="series-genres-section">
+          <div class="detail-section-title" data-i18n="detail.genres">Generi</div>
+          <div class="detail-pills" id="series-genres-pills"></div>
+        </div>
+
+        <!-- Selettore stagioni -->
+        <div class="detail-section">
+          <div class="detail-section-title" data-i18n="series.seasonLabel">Stagione</div>
+          <div id="season-selector" class="season-selector"></div>
+        </div>
+
+        <!-- Elenco episodi della stagione selezionata -->
+        <div id="episode-list" class="episode-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== SCHERMATA DETTAGLI ===================== -->
+  <div id="view-detail" class="view">
+    <div class="detail-header">
+      <button id="detail-back" class="back-btn icon-font" tabindex="0" aria-label="Indietro" data-i18n-aria="common.back">&#xE0BA;</button>
+      <h1 class="detail-title" id="detail-title">Titolo del film</h1>
+      <span class="detail-meta" id="detail-meta"></span>
+    </div>
+    <div class="detail-wrap">
+      <div class="detail-poster" id="detail-poster-btn" tabindex="0">
+        <img id="detail-poster-img" src="" alt="" />
+        <div class="detail-poster-play icon-font">&#xE102;</div>
+      </div>
+      <div class="detail-info">
+        <p class="detail-desc" id="detail-desc">Descrizione del film selezionato.</p>
+
+        <div class="detail-rating-row">
+          <div class="detail-stars" id="detail-stars"></div>
+          <button id="mylist-btn" class="btn btn-secondary" tabindex="0">
+            <span id="mylist-icon" class="btn-icon icon-font">&#xE109;</span>
+            <span id="mylist-label" data-i18n="detail.addToList">Aggiungi alla lista</span>
+          </button>
+        </div>
+
+        <div class="detail-subtitles-line" id="detail-subtitles-line"></div>
+
+        <div class="detail-section hidden" id="detail-cast-section">
+          <div class="detail-section-title" data-i18n="detail.starring">Cast</div>
+          <div class="detail-pills" id="detail-cast-pills"></div>
+        </div>
+        <div class="detail-section hidden" id="detail-director-section">
+          <div class="detail-section-title" data-i18n="detail.director">Regia</div>
+          <div class="detail-pills" id="detail-director-pills"></div>
+        </div>
+        <div class="detail-section" id="detail-genres-section">
+          <div class="detail-section-title" data-i18n="detail.genres">Generi</div>
+          <div class="detail-pills" id="detail-genres-pills"></div>
+        </div>
+
+        <div class="detail-actions">
+          <button id="play-btn" class="btn btn-primary" tabindex="0" data-nav="play">
+            <span class="btn-icon icon-font">&#xE102;</span> <span data-i18n="detail.play">Riproduci</span>
+          </button>
+          <button id="download-btn" class="btn btn-secondary" tabindex="0" data-nav="download">
+            <span id="download-icon" class="btn-icon icon-font">&#xE118;</span>
+            <span id="download-label">Scarica</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== PLAYER VIDEO ===================== -->
+  <div id="view-player" class="view player-view">
+    <div class="player-stage" id="player-stage">
+      <video id="video-player" class="video-el"></video>
+      <div id="youtube-player-container" class="youtube-player-container hidden"></div>
+      <div id="player-error" class="player-error hidden" data-i18n="player.error">
+        Impossibile riprodurre il video. Controlla la connessione o l'URL sorgente.
+      </div>
+
+      <div class="player-overlay" id="player-overlay">
+        <div class="player-top">
+          <button id="player-back" class="icon-btn icon-font" tabindex="0" aria-label="Indietro" data-i18n-aria="common.back">&#xE0BA;</button>
+          <span id="player-title" class="player-title-text"></span>
+        </div>
+
+        <div class="player-center">
+          <button id="player-playpause-big" class="play-big icon-font" tabindex="0" aria-label="Play/Pausa" data-i18n-aria="player.playPause">&#xE102;</button>
+        </div>
+
+        <div class="player-bottom">
+          <div class="player-progress-wrap" id="player-progress-wrap" tabindex="0">
+            <span id="player-time-current" class="player-time-badge">00:00</span>
+            <span id="player-time-total" class="player-time-total">00:00</span>
+            <div class="player-progress-bg">
+              <div class="player-progress-buffer" id="player-buffer"></div>
+              <div class="player-progress-fill" id="player-progress-fill"></div>
+              <div class="player-progress-handle" id="player-progress-handle"></div>
+            </div>
+          </div>
+          <div class="player-controls-row">
+            <button id="player-playpause" class="icon-btn icon-font" tabindex="0" aria-label="Play/Pausa" data-i18n-aria="player.playPause">&#xE102;</button>
+            <div class="player-audio-wrap">
+              <button id="player-audio-btn" class="icon-btn icon-font" tabindex="0" aria-label="Tracce audio" data-i18n-aria="player.audioTracks">&#xE15D;</button>
+              <div id="player-audio-menu" class="player-audio-menu hidden"></div>
+            </div>
+            <div class="spacer"></div>
+            <button id="player-subtitles-btn" class="player-lang-btn hidden" tabindex="0">
+              <span class="icon-font">&#xE13B;</span>
+              <span id="player-subtitles-label" data-i18n="player.subtitles">Sottotitoli</span>
+            </button>
+            <button id="player-fullscreen" class="icon-btn icon-font" tabindex="0" aria-label="Schermo intero" data-i18n-aria="player.fullscreen">&#xE1D9;</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Template nascosto per una tile poster (clonato via JS) -->
+  <template id="tile-template">
+    <div class="tile" tabindex="0">
+      <div class="tile-poster">
+        <img class="tile-img" src="" alt="" />
+        <div class="tile-play icon-font"><span>&#xE102;</span></div>
+        <div class="tile-progress hidden"><div class="tile-progress-fill"></div></div>
+      </div>
+      <div class="tile-title"></div>
+    </div>
+  </template>
+
+  <script src="js/app.js"></script>
+</body>
 </html>
