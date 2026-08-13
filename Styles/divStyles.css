@@ -1,0 +1,430 @@
+div {
+	position:absolute;
+	margin:auto;
+}
+
+.answerStrapDiv {
+	background:url('../Images/Full_Answer_Strap.png') no-repeat;
+	width:1920px;
+	height:96px;
+	left:0px;
+	right:0px;
+	opacity:0;
+	-moz-opacity:0;
+	-webkit-opacity:0;
+}
+
+.answerGroupADiv {
+	-webkit-transform-origin-x:960px;
+	-webkit-transform-origin-y:-207px;
+	-webkit-transform-origin-z:0px;
+}
+
+.answerGroupBDiv {
+	-webkit-transform-origin-x:960px;
+	-webkit-transform-origin-y:-109px;
+	-webkit-transform-origin-z:0px;
+}
+
+.answerStrapLifeLineCenterDiv {
+	bottom:110px;
+	left:0px;
+	right:0px;
+	width:150px;
+	height:122px;
+}
+
+.answerStrapLifeLineCenterContainerDiv {
+	bottom:0px;
+	left:0px;
+	right:0px;
+	top:0px;
+	width:150px;
+	height:122px;
+}
+
+.answerStrapLifeLineCenterGradientDiv {
+	width:150px;
+	height:122px;
+	opacity:0;
+	-moz-opacity:0;
+	-webkit-opacity:0;
+	-webkit-mask-image:url('../Images/lifeline_tree/lifeline_fill_mask.png');
+	-webkit-mask-repeat:round;
+}
+
+.ataGraphDiv {
+	width:334px;
+	height:486px;
+	background:url('../Images/audience_graph.png') no-repeat;
+	top:47px;
+	right:250px;
+	opacity:0;
+	-moz-opacity:0;
+	-webkit-opacity:0;
+}
+
+.ataGraphBarDiv {
+	background:url('../Images/audience_answer_bar.png') no-repeat;
+	width:48px;
+	bottom:77px;
+}
+
+.ataGraphPercentDiv{
+	font-family:Verdana;
+	font-size:34pt;
+	text-align:center;
+	width:145px;
+	color:white;
+	top:18px;
+	scale:70% 100%;
+}
+
+.ataPercentStrapDiv {
+	width:146px;
+	height:70px;
+	background:url('../Images/ata_percent_strap_background.png') no-repeat;
+	top:0px;
+	bottom:0px;
+	right:116px;
+	color:white;
+	font-family:Verdana;
+	font-size:28pt;
+	opacity:0;
+	-moz-opacity:0;
+	-webkit-opacity:0;
+	
+}
+
+.contestantNameAndLocationDiv {
+	width:1920px;
+	height:244px;
+	bottom:89px;
+	background:url('../Images/Large_Win_Strap_Stretched_Gradient_Filled.png') no-repeat;
+	opacity:0;
+	-moz-opacity:0;
+	-webkit-opacity:0;
+}
+
+.currentLevelStrapDiv {
+	width:1080px;
+	height:96px;
+	background:url('../Images/small_side_strap_fill.png') no-repeat;
+	top:192px;
+	right:-832px;
+	transform:scale(0.77);
+	transform-origin:right;
+	overflow:hidden;
+}
+
+.currentLevelStrapAmountDiv{
+	color:#EA932C;
+	font-family:'Copperplate31bc';
+	font-size:58pt;
+	height:60px;
+	width:700px;
+	bottom:25px;
+	left:-87px;
+	text-align:center;
+	scale:100% 100%;
+}
+
+.fastestContestantDiv {
+	height:80px;
+	width:1920px;
+	background:url('../Images/fastest_time_strap.png') no-repeat;
+}
+
+.fastestFingerContestantsDiv {
+	width:1920px;
+	height:889px;
+	top:7px;
+	bottom:0px;
+	left:0px;
+	right:0px;
+	opacity:0;
+	-moz-opacity:0;
+	-webkit-opacity:0;
+}
+
+.logoContainerDiv {
+	background-color:black;
+	width:1920px;
+	height:1080px;
+	top:0px;
+	bottom:0px;
+	left:0px;
+	right:0px;
+	opacity:0;
+	-moz-opacity:0;
+	-webkit-opacity:0;
+}
+
+.logoDiv{
+	width:450px;
+	height:450px;
+	top:0px;
+	bottom:0px;
+	right:0px;
+	left:0px;
+}
+
+.stageContainerDiv {
+	width:1920px;
+	height:1080px;
+	top:0px;
+	bottom:0px;
+	left:0px;
+	right:0px;
+	overflow:hidden;
+	background:url('../Images/backGround.png') no-repeat;
+}
+
+.fastestFingerRevealOrderDiv{
+	background:url('../Images/fastest_finger_tree_background.png') no-repeat;
+	height:1080px;
+	width:855px;
+	right:-855px;
+	top:0px;
+	bottom:0px;
+}
+
+.fastestFingerTreeAnswerDiv{
+	background:url('../Images/fastest_tree_strap_fill.png') no-repeat;
+	width:780px;
+	height:96px;
+	left:855px;
+}
+
+.fastestFingerTreeQuestionDiv {
+	width:500px;
+	height:430px;
+	top:125px;
+	left:58px;
+	line-height:1.29;
+}
+
+.leftAnswerDiv {
+	width:857px;
+	height:96px;
+	left:197px;
+}
+
+.lifeLinesLeftStrapDiv {
+	width:1696px;
+	height:200px;
+	background:url('../Images/large_lifeline_strap_holder.png') no-repeat;
+	bottom:68px;
+	left:1920px;
+	overflow:hidden;
+}
+
+.lifelineGradientTreeDiv {
+	width:123px;
+	height:100px;
+	opacity:0;
+	-moz-opacity:0;
+	-webkit-opacity:0;
+	-webkit-mask-image:url('../Images/lifeline_tree/lifeline_fill_mask.png');
+	-webkit-mask-repeat:round;
+}
+
+.lifelineGradientStrapDiv {
+	width:172px;
+	height:140px;
+	opacity:0;
+	-moz-opacity:0;
+	-webkit-opacity:0;
+	-webkit-mask-image:url('../Images/lifeline_tree/lifeline_fill_mask.png');
+	-webkit-mask-repeat:round;
+}
+
+.lifelineTreeDiv {
+	top:-50px;
+	bottom:-50px;
+	right:-50px;
+	left:-50px;
+	width:123px;
+	height:100px;
+}
+
+.lifelineTreeGroupDiv{
+	width:1000px;
+	height:162px;
+	top:83px;
+	left:16px;
+	scale:100%;
+	transform-origin:left;
+}
+
+.lifelineTreeHolderDiv{
+	width:200px;
+	height:162px;
+	opacity:1;
+	-moz-opacity:1;
+	-webkit-opacity:1;
+}
+
+.lifelineStrapHolderDiv{
+	width:200px;
+	height:162px;
+	opacity:1;
+	-moz-opacity:1;
+	-webkit-opacity:1;
+}
+
+.lifeLineStrapDiv {
+	height:140px;
+	width:171px;
+	top:-50px;
+	left:-50px;
+	bottom:-50px;
+	right:-50px;
+}
+
+.millionaireWinnerNameDiv{
+	width:1920px;
+	height:80px;
+	left:0px;
+	right:0px;
+	top:14px;
+	color:white;
+	font-family:'Copperplate31bc-Celador01';
+	text-align:center;
+	font-size:63pt;
+}
+
+.millionaireWinnerDiv {
+	width:1920px;
+	height:80px;
+	left:0px;
+	right:0px;
+	bottom:108px;
+	color:#F58B1A;
+	font-family:'Copperplate31bc-Celador01';
+	text-align:center;
+	font-size:80pt;
+}
+
+.millionaireWinnerTitleDiv {
+	width:1920px;
+	height:325px;
+	background:url('../Images/bottom_overlay.png') no-repeat;
+	left:0px;
+	right:0px;
+	bottom:0px;
+	opacity:0;
+	-moz-opacity:0;
+	-webkit-opacity:0;
+}
+
+.moneyTreeDiv {
+	background:url('../Images/money_tree_background.png') no-repeat;
+	height:1080px;
+	width:836px;
+	right:-836px;
+	top:0px;
+	bottom:0px;
+	overflow:hidden;
+}
+
+.pafClockDiv {
+	width:400px;
+	height:400px;
+	bottom:631px;
+	right:238px;
+	transform:perspective(0px) scale(0);
+	opacity:0;
+	-moz-opacity:0;
+	-webkit-opacity:0;
+}
+
+.pafClockTimeDiv {
+	font-family:'Copperplate31bc';
+	color:white;
+	font-size:165pt;
+	width:400px;
+	height:164px;
+	left:0px;
+	right:0px;
+	top:90px;
+	text-align:center;
+	letter-spacing:-5px;
+	text-shadow: 0px 0px 25px #00bbff;
+}
+
+.rightAnswerDiv {
+	width:857px;
+	height:96px;
+	right:196px;
+}
+
+.questionStrapDiv {
+	width:1920px;
+	height:192px;
+	background:url('../Images/Large_Strap.png') no-repeat;
+	bottom:240px;
+	left:0px;
+	right:0px;
+	opacity:0;
+	-moz-opacity:0;
+	-webkit-opacity:0;
+}
+
+.stageBackgroundDiv {
+	width:1920px;
+	height:1080px;
+	top:0px;
+	bottom:0px;
+	right:0px;
+	left:0px;
+}
+
+.totalPrizeMoneyDiv {
+	width:1920px;
+	height:325px;
+	background:url('../Images/bottom_overlay.png') no-repeat;
+	left:0px;
+	right:0px;
+	bottom:0px;
+	opacity:0;
+	-moz-opacity:0;
+	-webkit-opacity:0;
+}
+
+.totalPrizeDiv {
+	width:1920px;
+	height:80px;
+	left:0px;
+	right:0px;
+	top:14px;
+	color:white;
+	font-family:'Copperplate31bc-Celador01';
+	text-align:center;
+	font-size:63pt;
+}
+
+.totalPrizeMoneyWonDiv {
+	width:1920px;
+	height:80px;
+	left:0px;
+	right:0px;
+	bottom:108px;
+	color:#F58B1A;
+	font-family:'Copperplate31bc-Celador01';
+	text-align:center;
+	font-size:80pt;
+	scale:100% 100%;
+}
+
+.winStrapDiv {
+	width:1920px;
+	height:192px;
+	background:url('../Images/Large_Win_Strap_Filled.png') no-repeat;
+	left:0px;
+	right:0px;
+	bottom:41px;
+	opacity:0;
+	-moz-opacity:0;
+	-webkit-opacity:0;
+}
