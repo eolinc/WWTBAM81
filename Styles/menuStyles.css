@@ -1,0 +1,109 @@
+/* MenuManager visuals — deliberately reuses the same strap graphics, fonts and colour
+   palette already used by the question/answer screens, so the menu reads as part of
+   the same game rather than a separate web UI. */
+
+.mainMenuDiv {
+	position: absolute;
+	top: 0; left: 0; right: 0; bottom: 0;
+	width: 1920px;
+	height: 1080px;
+	background: url('../Images/Millionaire_Background.png') no-repeat;
+	background-size: cover;
+	z-index: 9999;
+}
+
+.menuTitleStrapDiv {
+	position: absolute;
+	top: 40px;
+	left: 0; right: 0;
+	width: 1920px;
+	height: 192px;
+	background: url('../Images/Large_Strap.png') no-repeat;
+	background-size: 100% 100%;
+}
+
+.menuTitleTable { width: 100%; height: 100%; border-collapse: collapse; }
+.menuTitleTd {
+	text-align: center;
+	vertical-align: middle;
+	font-family: 'Copperplate31bc-Celador01';
+	color: #FFFFFF;
+	font-size: 58pt;
+	letter-spacing: 2px;
+}
+
+.menuGridDiv {
+	position: absolute;
+	top: 300px;
+	left: 0; right: 0;
+	width: 1920px;
+}
+
+.menuAnswerStrapDiv {
+	position: relative;
+	width: 1920px;
+	height: 96px;
+	margin-bottom: 18px;
+	background: url('../Images/Full_Answer_Strap.png') no-repeat;
+	background-size: 100% 100%;
+}
+
+.menuLeftDiv, .menuRightDiv {
+	position: absolute;
+	top: 0;
+	width: 857px;
+	height: 96px;
+	overflow: hidden;
+	cursor: pointer;
+	-webkit-user-select: none;
+	user-select: none;
+	touch-action: manipulation;
+}
+.menuLeftDiv { left: 197px; }
+.menuRightDiv { right: 196px; }
+
+.menuDiagonalImg {
+	position: absolute;
+	top: 0; left: 0;
+	height: 96px;
+	opacity: 0;
+}
+
+.menuItemP {
+	position: absolute;
+	top: 0; left: 0; right: 0;
+	height: 96px;
+	line-height: 96px;
+	text-align: center;
+	font-family: 'Copperplate31bc-Celador01';
+	color: #FFFFFF;
+	font-size: 30pt;
+	letter-spacing: 1px;
+	transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.menuCellSelected .menuItemP {
+	color: #F58B1A;
+	transform: scale(1.05);
+}
+.menuCellSelected .menuDiagonalImg {
+	opacity: 0.25;
+}
+
+.menuPanelBodyDiv {
+	position: absolute;
+	top: 414px;
+	left: 197px;
+	width: 1526px;
+	min-height: 400px;
+	display: none;
+}
+
+.menuPanelBodyP {
+	font-family: 'Copperplate31bc';
+	color: #FFFFFF;
+	font-size: 24pt;
+	line-height: 1.6;
+	text-align: left;
+	white-space: pre-line;
+}
