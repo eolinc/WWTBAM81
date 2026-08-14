@@ -1,0 +1,16 @@
+.introVideoOverlayDiv {
+	position: absolute;
+	top: 0; left: 0;
+	width: 1920px;
+	height: 1080px;
+	background: #000000;
+	z-index: 10001; /* above the menu (9999) and the touch panel (9998) */
+}
+
+.introVideoTag {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	background: #000000;
+	pointer-events: none; /* not skippable: tapping/clicking the video does nothing */
+}
