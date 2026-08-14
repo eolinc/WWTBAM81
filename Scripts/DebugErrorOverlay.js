@@ -11,29 +11,31 @@
 	function ensureBox() {
 		if (!$box) {
 			$box = document.createElement('div');
-			$box.style.cssText = 'position:fixed;left:0;right:0;bottom:0;background:rgba(20,20,20,0.92);' +
-				'color:#fff;font-family:monospace;font-size:12px;padding:6px 10px;z-index:2147483647;' +
-				'max-height:40%;overflow:auto;white-space:pre-wrap;';
+			$box.style.cssText = 'all:initial;position:fixed !important;left:0;right:0;bottom:0;' +
+				'background:rgba(20,20,20,0.95);color:#fff;font-family:monospace;font-size:12px;' +
+				'padding:6px 10px;z-index:2147483647;max-height:45%;overflow:auto;';
 			document.body.appendChild($box);
 		}
 	}
 
-	function showError(message) {
+	function appendLine(text, color) {
 		ensureBox();
 		var line = document.createElement('div');
-		line.style.color = '#ff6b6b';
-		line.textContent = message;
+		// Force layout regardless of the page's own global CSS (which makes every <div> absolute).
+		line.style.cssText = 'all:initial;display:block !important;position:static !important;' +
+			'color:' + color + ' !important;font-family:monospace !important;font-size:12px !important;' +
+			'white-space:pre-wrap !important;line-height:1.4 !important;';
+		line.textContent = text;
 		$box.appendChild(line);
 		$box.scrollTop = $box.scrollHeight;
 	}
 
+	function showError(message) {
+		appendLine(message, '#ff6b6b');
+	}
+
 	function log(message) {
-		ensureBox();
-		var line = document.createElement('div');
-		line.style.color = '#7fd3ff';
-		line.textContent = new Date().toLocaleTimeString() + '  ' + message;
-		$box.appendChild(line);
-		$box.scrollTop = $box.scrollHeight;
+		appendLine(new Date().toLocaleTimeString() + '  ' + message, '#7fd3ff');
 	}
 
 	window.addEventListener('error', function (e) {
