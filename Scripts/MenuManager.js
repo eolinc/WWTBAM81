@@ -118,7 +118,13 @@
 			menuMusic = new Audio("Sounds/explain_rules.mp3");
 			menuMusic.loop = true;
 			menuMusic.volume = getMenuVolume();
-			menuMusic.play();
+			var p = menuMusic.play();
+			if (p && typeof p.catch === 'function') {
+				// Chrome sometimes still refuses this even after a user gesture (e.g. if the
+				// gesture wasn't a plain click/tap). Not critical — the game works without
+				// menu music, so we just swallow it instead of surfacing a false alarm.
+				p.catch(function () { });
+			}
 		} catch (e) { console.log(e); }
 	}
 	function stopMenuMusic() {
