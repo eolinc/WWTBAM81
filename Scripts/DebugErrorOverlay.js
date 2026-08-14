@@ -7,13 +7,14 @@
  **********************************************************************************************************/
 (function () {
 	var $box = null;
+	var DEBUG_MODE = (location.search.indexOf('debug=1') !== -1);
 
 	function ensureBox() {
 		if (!$box) {
 			$box = document.createElement('div');
 			$box.style.cssText = 'all:initial;position:fixed !important;left:0;right:0;bottom:0;' +
 				'background:rgba(20,20,20,0.95);color:#fff;font-family:monospace;font-size:12px;' +
-				'padding:6px 10px;z-index:2147483647;max-height:45%;overflow:auto;';
+				'padding:6px 10px;z-index:2147483647;max-height:22%;overflow:auto;';
 			document.body.appendChild($box);
 		}
 	}
@@ -35,6 +36,7 @@
 	}
 
 	function log(message) {
+		if (!DEBUG_MODE) { return; } // silent by default so it never covers the game; add ?debug=1 to the URL to see it
 		appendLine(new Date().toLocaleTimeString() + '  ' + message, '#7fd3ff');
 	}
 
