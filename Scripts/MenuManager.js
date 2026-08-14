@@ -28,7 +28,10 @@
 			statsPlayed: "Partite giocate", statsWins: "Vittorie", statsBest: "Miglior premio",
 			controlsBody: "Tastiera: frecce per muoversi, Invio per confermare, Esc per tornare indietro.\nMouse: clic sulla voce desiderata.\nTocco: tocca la voce desiderata sullo schermo.",
 			creditsBody: "Progetto realizzato dall'utente. Grafica, audio e domande forniti dal proprietario del progetto.",
-			quitConfirm: "Vuoi davvero uscire?"
+			quitConfirm: "Vuoi davvero uscire?",
+			playSubmenuTitle: "CHE PARTITA VUOI GIOCARE?",
+			playClassic: "Millionaire Classico",
+			volumeLabel: "Volume musica"
 		},
 		en: {
 			title: "MAIN MENU",
@@ -42,7 +45,10 @@
 			statsPlayed: "Games played", statsWins: "Wins", statsBest: "Best prize",
 			controlsBody: "Keyboard: arrow keys to move, Enter to confirm, Esc to go back.\nMouse: click the item you want.\nTouch: tap the item you want.",
 			creditsBody: "Project built by the owner. Graphics, audio and questions provided by the project owner.",
-			quitConfirm: "Do you really want to quit?"
+			quitConfirm: "Do you really want to quit?",
+			playSubmenuTitle: "WHAT TYPE OF GAME WOULD YOU LIKE TO PLAY?",
+			playClassic: "Classic Millionaire",
+			volumeLabel: "Music volume"
 		},
 		fr: {
 			title: "MENU PRINCIPAL",
@@ -56,7 +62,10 @@
 			statsPlayed: "Parties jouees", statsWins: "Victoires", statsBest: "Meilleur gain",
 			controlsBody: "Clavier : fleches pour se deplacer, Entree pour valider, Echap pour revenir.\nSouris : cliquez sur l'element voulu.\nTactile : touchez l'element voulu.",
 			creditsBody: "Projet realise par le proprietaire. Graphismes, audio et questions fournis par le proprietaire du projet.",
-			quitConfirm: "Voulez-vous vraiment quitter ?"
+			quitConfirm: "Voulez-vous vraiment quitter ?",
+			playSubmenuTitle: "QUEL TYPE DE PARTIE VOULEZ-VOUS JOUER ?",
+			playClassic: "Millionaire Classique",
+			volumeLabel: "Volume de la musique"
 		},
 		de: {
 			title: "HAUPTMENU",
@@ -70,7 +79,10 @@
 			statsPlayed: "Gespielte Spiele", statsWins: "Siege", statsBest: "Bester Gewinn",
 			controlsBody: "Tastatur: Pfeiltasten zum Bewegen, Enter zum Bestaetigen, Esc zum Zurueckgehen.\nMaus: Klicke auf den gewuenschten Punkt.\nTouch: Tippe auf den gewuenschten Punkt.",
 			creditsBody: "Projekt vom Eigentuemer erstellt. Grafik, Audio und Fragen vom Projekteigentuemer bereitgestellt.",
-			quitConfirm: "Moechtest du wirklich beenden?"
+			quitConfirm: "Moechtest du wirklich beenden?",
+			playSubmenuTitle: "WELCHE SPIELART MOECHTEST DU SPIELEN?",
+			playClassic: "Millionaire Klassisch",
+			volumeLabel: "Musiklautstaerke"
 		},
 		es: {
 			title: "MENU PRINCIPAL",
@@ -84,7 +96,10 @@
 			statsPlayed: "Partidas jugadas", statsWins: "Victorias", statsBest: "Mejor premio",
 			controlsBody: "Teclado: flechas para moverte, Intro para confirmar, Esc para volver.\nRaton: haz clic en el elemento deseado.\nTactil: toca el elemento deseado.",
 			creditsBody: "Proyecto realizado por el propietario. Graficos, audio y preguntas proporcionados por el propietario del proyecto.",
-			quitConfirm: "\u00bfSeguro que quieres salir?"
+			quitConfirm: "\u00bfSeguro que quieres salir?",
+			playSubmenuTitle: "\u00bfA QUE TIPO DE PARTIDA QUIERES JUGAR?",
+			playClassic: "Millionaire Clasico",
+			volumeLabel: "Volumen de la musica"
 		}
 	};
 
@@ -152,12 +167,12 @@
 
 	function mainMenuItems() {
 		return [
-			{ key: "play", action: function () { startGameFromMenu(); } },
+			{ key: "play", action: function () { showPlaySubmenu(); } },
 			{ key: "mode", action: function () { showTextPanel(t().mode, t().modeBody); } },
 			{ key: "language", action: function () { showLanguagePanel(); } },
 			{ key: "version", action: function () { showTextPanel(t().version, t().versionBody); } },
 			{ key: "rules", action: function () { showTextPanel(t().rules, t().rulesBody); } },
-			{ key: "settings", action: function () { showSettingsPanel(); } },
+			{ key: "settings", action: function () { showSettingsListPanel(); } },
 			{ key: "stats", action: function () { showStatsPanel(); } },
 			{ key: "controls", action: function () { showTextPanel(t().controls, t().controlsBody); } },
 			{ key: "credits", action: function () { showTextPanel(t().credits, t().creditsBody); } },
@@ -173,6 +188,10 @@
 	function buildMenuDom() {
 		$menuRoot = $(
 			'<div class="mainMenuDiv">' +
+				'<div class="menuLogoWrapDiv">' +
+					'<img src="Images/logo_beam_blue.png" class="menuLogoBeamImg"/>' +
+					'<img src="Images/logo.png" class="menuLogoImg"/>' +
+				'</div>' +
 				'<div class="menuTitleStrapDiv"><table class="menuTitleTable"><tr><td class="menuTitleTd"></td></tr></table></div>' +
 				'<div class="menuGridDiv"></div>' +
 				'<div class="menuPanelBodyDiv"><p class="menuPanelBodyP"></p></div>' +
@@ -184,13 +203,15 @@
 		$menuPanelBody = $menuRoot.find('.menuPanelBodyDiv');
 	}
 
+	var LETTERS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'];
+
 	function renderRow(leftItem, rightItem, rowIndexBase) {
 		var $row = $('<div class="menuAnswerStrapDiv"></div>');
 
 		function buildCell(item, side, globalIndex) {
 			if (!item) { return $('<div class="menu' + side + 'Div menuCellEmpty"></div>'); }
 			var $cell = $('<div class="menu' + side + 'Div menuCell" data-index="' + globalIndex + '"></div>');
-			$cell.append('<img src="Images/white_diagonal.png" class="menuDiagonalImg"/>');
+			$cell.append('<span class="menuBadgeSpan">' + (LETTERS[globalIndex] || '') + '</span>');
 			$cell.append('<p class="menuItemP">' + item.label + '</p>');
 			return $cell;
 		}
@@ -257,6 +278,10 @@
 		render(title, [], true, body);
 	}
 
+	function backItem() {
+		return { label: t().back, action: function () { volumePanelActive = false; (goBackStack.pop() || renderMainMenu)(); } };
+	}
+
 	function showLanguagePanel() {
 		volumePanelActive = false;
 		goBackStack.push(renderMainMenu);
@@ -271,20 +296,41 @@
 				action: function () { setLanguage(l.key); renderMainMenu(); }
 			};
 		});
+		items.push(backItem());
 		render(t().language, items, false, null);
 	}
 
-	function showSettingsPanel() {
+	function showPlaySubmenu() {
+		volumePanelActive = false;
 		goBackStack.push(renderMainMenu);
-		volumePanelActive = true;
-		refreshSettingsPanel();
+		var loc = t();
+		var items = [
+			{ label: loc.playClassic, action: function () { startGameFromMenu(); } },
+			backItem()
+		];
+		render(loc.playSubmenuTitle, items, false, null);
 	}
 
-	function refreshSettingsPanel() {
-		render(t().settings, [], true, t().settingsBody + '\n\n\u25c0 \u25c0   ' +
-			Math.round(getMenuVolume() * 100) + '%   \u25b6 \u25b6');
-		// render() resets currentItems' back action to pop the stack; while adjusting volume we
-		// re-render in place, so make sure "back" still works without pushing duplicate stack entries.
+	function showSettingsListPanel() {
+		volumePanelActive = false;
+		goBackStack.push(renderMainMenu);
+		var loc = t();
+		var volPct = Math.round(getMenuVolume() * 100);
+		var items = [
+			{
+				label: loc.volumeLabel + ': ' + volPct + '%',
+				action: function () {
+					var next = getMenuVolume() + 0.25;
+					if (next > 1.0001) { next = 0; }
+					setMenuVolume(next);
+					showSettingsListPanel();
+					goBackStack.pop(); // re-render in place, don't grow the back-stack each tap
+				}
+			},
+			{ label: loc.language, action: function () { showLanguagePanel(); } },
+			backItem()
+		];
+		render(loc.settings, items, false, null);
 	}
 
 	function showStatsPanel() {
@@ -338,15 +384,6 @@
 
 	function onMenuKeyDown(e) {
 		if ($menuRoot.css('display') === 'none') { return; }
-
-		if (volumePanelActive && (e.keyCode === 37 || e.keyCode === 39)) {
-			var v = getMenuVolume() + (e.keyCode === 39 ? 0.1 : -0.1);
-			v = Math.max(0, Math.min(1, v));
-			setMenuVolume(v);
-			refreshSettingsPanel();
-			e.preventDefault();
-			return;
-		}
 
 		switch (e.keyCode) {
 			case 38: case 37: moveSelection(-1); e.preventDefault(); break; // Up / Left
