@@ -13,14 +13,17 @@
 
 	var VIDEO_PATH = "Videos/intro.mp4";
 	var MISSING_FILE_FALLBACK_MS = 4000; // if the video can't load at all, give up waiting after this long
+	var ABSOLUTE_FALLBACK_MS = 20000;    // absolute ceiling: never block the player longer than this, no matter what
 
 	var $overlay = null;
 
 	function play(onDone) {
+		if (window.WWTBAMLog) { WWTBAMLog('IntroVideo: play() chiamato'); }
 		var finished = false;
 		function finish() {
 			if (finished) { return; }
 			finished = true;
+			if (window.WWTBAMLog) { WWTBAMLog('IntroVideo: finish() -> avvio gioco'); }
 			if ($overlay) { $overlay.remove(); $overlay = null; }
 			$(document).off('contextmenu.introvideo keydown.introvideo');
 			onDone();
@@ -42,11 +45,18 @@
 		$(document).on('keydown.introvideo', function (e) { e.preventDefault(); e.stopPropagation(); });
 
 		videoEl.addEventListener('ended', finish);
-		videoEl.addEventListener('error', function () { finish(); });
+		videoEl.addEventListener('error', function () {
+			if (window.WWTBAMLog) { WWTBAMLog('IntroVideo: errore caricamento video (' + VIDEO_PATH + ' non trovato?)'); }
+			finish();
+		});
+		videoEl.addEventListener('loadedmetadata', function () {
+			if (window.WWTBAMLog) { WWTBAMLog('IntroVideo: metadata caricata, durata=' + videoEl.duration + 's'); }
+		});
 
 		var playPromise = videoEl.play();
 		if (playPromise && typeof playPromise.catch === 'function') {
-			playPromise.catch(function () {
+			playPromise.catch(function (err) {
+				if (window.WWTBAMLog) { WWTBAMLog('IntroVideo: play() rifiutato (' + err.name + '), riprovo muto'); }
 				// Autoplay with sound blocked by the browser: retry muted so the intro still plays visually.
 				videoEl.muted = true;
 				videoEl.play().catch(function () { finish(); });
@@ -55,8 +65,17 @@
 
 		// Safety net: if the file is missing/unplayable and no 'error'/'ended' ever fires, don't trap the player.
 		setTimeout(function () {
+			if (window.WWTBAMLog) { WWTBAMLog('IntroVideo: check di sicurezza, readyState=' + videoEl.readyState + ' paused=' + videoEl.paused); }
 			if (!finished && (videoEl.readyState === 0 || videoEl.error)) { finish(); }
 		}, MISSING_FILE_FALLBACK_MS);
+
+		// Absolute safety net: no matter what state the video is in, never trap the player forever.
+		setTimeout(function () {
+			if (!finished) {
+				if (window.WWTBAMLog) { WWTBAMLog('IntroVideo: timeout assoluto raggiunto, forzo avvio gioco'); }
+				finish();
+			}
+		}, ABSOLUTE_FALLBACK_MS);
 	}
 
 	window.WWTBAMIntroVideo = { play: play };
