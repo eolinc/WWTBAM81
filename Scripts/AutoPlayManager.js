@@ -44,6 +44,7 @@
 
 	/* ---- Per-question reveal: lights down -> question -> 4 answers -> then PAUSE (do nothing) ---- */
 	function playOutQuestionReveal() {
+		if (window.WWTBAMLog) { WWTBAMLog('AutoPlay: playOutQuestionReveal (livello ' + (gv().QuestionLevel) + ')'); }
 		key(39); // counter 0 -> 1 (lights down)
 		step(TIMINGS.afterLightsDown, function () {
 			key(39); // counter 1 -> 2 (question + answer straps slide in)
@@ -53,6 +54,7 @@
 
 	function revealNextAnswer() {
 		key(39); // reveals one more answer (counter 2->3->4->5, then auto-resets to -1 internally)
+		if (window.WWTBAMLog) { WWTBAMLog('AutoPlay: revealNextAnswer, counter=' + gv().QuestionSequenceCounter); }
 		if (gv().QuestionSequenceCounter === -1) {
 			// All 4 answers are visible. This is a decision point: wait for the player.
 			waitForPlayerDecision();
@@ -63,6 +65,7 @@
 
 	/* ---- Decision point: poll silently until the player locks in an answer or walks away ---- */
 	function waitForPlayerDecision() {
+		if (window.WWTBAMLog) { WWTBAMLog('AutoPlay: in attesa della scelta del giocatore...'); }
 		clearInterval(pollTimer);
 		pollTimer = setInterval(function () {
 			if (!running) { clearInterval(pollTimer); return; }
@@ -111,6 +114,7 @@
 	/* ---- Public entry point: call this once, right after the game screen is revealed ---- */
 	function start() {
 		if (running) { return; }
+		if (window.WWTBAMLog) { WWTBAMLog('AutoPlay: start()'); }
 		running = true;
 		playOutQuestionReveal();
 	}
