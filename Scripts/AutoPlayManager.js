@@ -24,7 +24,8 @@
 		afterCorrectReveal: 1400,   // 7: hide straps / show amount won
 		beforeNextQuestion: 1800,   // 8: level up, then loop back to 0
 		afterWrongReveal: 1800,     // 9: reduce amount / hide straps (game over)
-		pollInterval: 250           // how often we check "did the player decide yet?"
+		pollInterval: 250,          // how often we check "did the player decide yet?"
+		betweenIntroSteps: 1300     // pacing for the money-tree/explain-rules intro (see below)
 	};
 
 	var running = false;
@@ -111,12 +112,28 @@
 		}
 	}
 
-	/* ---- Public entry point: call this once, right after the game screen is revealed ---- */
+	/* ---- Public entry point: call this once, right after the game screen is revealed ----
+	   Before the first question, the original controller requires a "explain rules / reveal
+	   money tree" intro (left arrow, 5 presses) — without it, IsExplainingRules stays true
+	   forever and the game silently refuses to advance to the first question. We play that
+	   out automatically here, then start the normal per-question loop. */
 	function start() {
 		if (running) { return; }
 		if (window.WWTBAMLog) { WWTBAMLog('AutoPlay: start()'); }
 		running = true;
-		playOutQuestionReveal();
+		playOutMoneyTreeIntro(0);
+	}
+
+	function playOutMoneyTreeIntro(introStep) {
+		if (!running) { return; }
+		if (window.WWTBAMLog) { WWTBAMLog('AutoPlay: intro regole/scalata, passo ' + introStep); }
+		key(37); // left arrow: steps through MoneyTreeSequenceCounter 0,1,2,3,4(+)
+		if (introStep >= 4) {
+			// Step 4 is the one that actually clears IsExplainingRules and reveals the tree.
+			step(TIMINGS.betweenIntroSteps, function () { playOutQuestionReveal(); });
+		} else {
+			step(TIMINGS.betweenIntroSteps, function () { playOutMoneyTreeIntro(introStep + 1); });
+		}
 	}
 
 	function stop() {
