@@ -51,6 +51,16 @@
 		});
 		videoEl.addEventListener('loadedmetadata', function () {
 			if (window.WWTBAMLog) { WWTBAMLog('IntroVideo: metadata caricata, durata=' + videoEl.duration + 's'); }
+			// Now that we know the real duration, replace the generic absolute fallback with one
+			// sized to the actual video (+5s buffer) so a valid, longer intro is never cut short.
+			clearTimeout(absoluteFallbackTimer);
+			var dur = (isFinite(videoEl.duration) && videoEl.duration > 0) ? videoEl.duration * 1000 : ABSOLUTE_FALLBACK_MS;
+			absoluteFallbackTimer = setTimeout(function () {
+				if (!finished) {
+					if (window.WWTBAMLog) { WWTBAMLog('IntroVideo: timeout assoluto raggiunto, forzo avvio gioco'); }
+					finish();
+				}
+			}, dur + 5000);
 		});
 
 		var playPromise = videoEl.play();
@@ -70,7 +80,8 @@
 		}, MISSING_FILE_FALLBACK_MS);
 
 		// Absolute safety net: no matter what state the video is in, never trap the player forever.
-		setTimeout(function () {
+		// (Re-armed with the real duration as soon as 'loadedmetadata' fires above — see there.)
+		var absoluteFallbackTimer = setTimeout(function () {
 			if (!finished) {
 				if (window.WWTBAMLog) { WWTBAMLog('IntroVideo: timeout assoluto raggiunto, forzo avvio gioco'); }
 				finish();
