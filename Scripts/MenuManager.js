@@ -363,21 +363,31 @@
 	 * 7. ENTRY / EXIT POINTS
 	 * ------------------------------------------------------------------------------------------- */
 	function startGameFromMenu() {
+		if (window.WWTBAMLog) { WWTBAMLog('Menu: GIOCA premuto'); }
 		stopMenuMusic();
 		$(document).off('pointerdown.audiounlock keydown.audiounlock');
 		$menuRoot.css('display', 'none');
 		$(document).off('keydown.menu');
 
 		if (window.WWTBAMIntroVideo) {
+			if (window.WWTBAMLog) { WWTBAMLog('Menu: avvio IntroVideo'); }
 			window.WWTBAMIntroVideo.play(startActualGame);
 		} else {
+			if (window.WWTBAMLog) { WWTBAMLog('Menu: IntroVideoManager non trovato, salto sigla'); }
 			startActualGame();
 		}
 	}
 
 	function startActualGame() {
+		if (window.WWTBAMLog) { WWTBAMLog('Menu: startActualGame() -> chiamo init()'); }
 		if (typeof init === 'function') { init(); } // the original, untouched game init()
-		if (window.WWTBAMTouchControls) { window.WWTBAMTouchControls.show(); }
+		if (window.WWTBAMLog) { WWTBAMLog('Menu: init() completato'); }
+		if (window.WWTBAMTouchControls) {
+			window.WWTBAMTouchControls.show();
+			if (window.WWTBAMLog) { WWTBAMLog('Menu: pannello touch mostrato'); }
+		} else if (window.WWTBAMLog) {
+			WWTBAMLog('Menu: ATTENZIONE TouchControlsManager non trovato!');
+		}
 
 		/* init() leaves the game on the intro "MILLIONAIRE" logo screen, waiting for the
 		   operator to press 'C' to reveal the actual question/answer screen (this matches
@@ -385,11 +395,19 @@
 		   already act as the pre-show screen, we trigger that first 'C' press automatically
 		   here, then hand off to AutoPlayManager to run the question flow by itself. */
 		setTimeout(function () {
+			if (window.WWTBAMLog) { WWTBAMLog('Menu: invio tasto C automatico'); }
 			if (typeof window.triggerGameControllerKey === 'function') {
 				window.triggerGameControllerKey(67);
+			} else if (window.WWTBAMLog) {
+				WWTBAMLog('Menu: ATTENZIONE triggerGameControllerKey non esiste!');
 			}
 			setTimeout(function () {
-				if (window.WWTBAMAutoPlay) { window.WWTBAMAutoPlay.start(); }
+				if (window.WWTBAMLog) { WWTBAMLog('Menu: avvio AutoPlayManager'); }
+				if (window.WWTBAMAutoPlay) {
+					window.WWTBAMAutoPlay.start();
+				} else if (window.WWTBAMLog) {
+					WWTBAMLog('Menu: ATTENZIONE AutoPlayManager non trovato!');
+				}
 			}, 600);
 		}, 1200);
 	}
